@@ -18,7 +18,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Password is required"],
-    }
+    },
+    books: [{
+        type: mongoose.Types.ObjectId,
+        ref: "Book"
+    }]
 });
 
 const User = mongoose.model('User', userSchema);

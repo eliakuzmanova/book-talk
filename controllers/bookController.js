@@ -1,4 +1,5 @@
 const bookService = require("../services/bookService");
+const userService = require("../services/userService");
 const errorUtils = require("../utils/errorUtils")
 
 exports.getCreateView = (req, res) => {
@@ -53,11 +54,15 @@ exports.getWish = async (req, res) => {
         const bookId = req.params.bookId
         const userId = req.user.userId
 
+
+        const user = await userService.getUser(userId)
         const book = await bookService.getOneById(bookId);
        
         book.wishList.push(userId);
+        user.books.push(bookId);
       
         await bookService.updateWishListById(bookId,book.wishList);
+        await userService.updateBooks(userId, user.books);
         res.redirect(`/details/${bookId}`);
 
     } catch (err) {
