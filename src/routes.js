@@ -18,6 +18,8 @@ router.get("/catalog", bookController.getCatalogView)
 router.get("/details/:bookId", bookController.getDetailsView)
 router.get("/wish/:bookId", bookController.getWish)
 
+router.get("/delete/:bookId", bookController.getDelete)
+
 router.get("/register", authController.getRegisterView);
 router.post("/register", authController.postRegister);
 

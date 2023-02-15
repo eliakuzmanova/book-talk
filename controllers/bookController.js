@@ -65,3 +65,13 @@ exports.getWish = async (req, res) => {
     }
     
 }
+
+exports.getDelete = async (req, res) => {
+    try {
+        const bookId = req.params.bookId;
+        await bookService.delete(bookId)
+        res.redirect("/catalog")
+    } catch (err) {
+        return errorUtils.errorResponse(res, "home/404", err, 404);
+    }
+}
