@@ -20,6 +20,9 @@ router.get("/wish/:bookId", bookController.getWish)
 
 router.get("/delete/:bookId", bookController.getDelete)
 
+router.get("/edit/:bookId", bookController.getEditView)
+router.post("/edit/:bookId", bookController.postEdit)
+
 router.get("/register", authController.getRegisterView);
 router.post("/register", authController.postRegister);
 

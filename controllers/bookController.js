@@ -75,3 +75,28 @@ exports.getDelete = async (req, res) => {
         return errorUtils.errorResponse(res, "home/404", err, 404);
     }
 }
+
+exports.getEditView = async (req, res) => {
+    try {
+        const bookId = req.params.bookId;
+        const book = await bookService.getOneById(bookId); 
+
+        res.render("book/edit", {book})
+    } catch (err) {
+        return errorUtils.errorResponse(res, "home/404", err, 404);
+    }
+}
+
+exports.postEdit = async (req, res) => {
+    try {
+        const bookId = req.params.bookId;
+      
+        const {title, author, genre, stars, image, review} = req.body
+    
+       const book = await bookService.edit(bookId,title, author, genre, stars, image, review)
+        
+        res.redirect(`/details/${bookId}`)
+    } catch (err) {
+        return errorUtils.errorResponse(res, "home/404", err, 404);
+    }
+};
