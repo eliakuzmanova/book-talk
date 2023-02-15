@@ -22,6 +22,9 @@ exports.postRegister = async (req, res) => {
         if(!password) {
             throw Error("Password is required")
         }
+        if(password.length < 3) {
+            throw Error("Too short password")
+        }
         if(!repeatPassword) {
             throw Error("Confirm password is required")
         }

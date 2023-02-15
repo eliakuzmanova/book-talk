@@ -5,7 +5,7 @@ function getFirstMonooseError(err) {
     return errors[0];
 }
 
-exports.getErrorMessage = (err) => {
+const getErrorMessage = (err) => {
     switch (err.name) {
         case "Error":
             return err.message;
@@ -18,6 +18,7 @@ exports.getErrorMessage = (err) => {
 
  
 exports.errorResponse = (res, template, error,status = 404) => {
-    const err = this.getErrorMessage(error);
+   
+    const err = getErrorMessage(error);
     return res.status(status).render(template, {err})
 }

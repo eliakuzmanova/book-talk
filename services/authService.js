@@ -27,10 +27,10 @@ exports.findUserByEmail = (email) => User.findOne({email})
 exports.login = async(req,res ,email, password) => {
 
      try{
-        
         const existingUser = await this.findUserByEmail(email)
          
         if(!existingUser) {
+            
             throw Error("Invalid email");
         }
 

@@ -26,6 +26,6 @@ app.use(authentication)
 app.use(router)
 
 mongoose.set({"strictQuery": false})
-mongoose.connect("mongodb://localhost:27017/crypto")
+mongoose.connect("mongodb://localhost:27017/book")   //<------------ put to right database name------------
 
 app.listen(5080, console.log("Server is listeting on port 5080..."))
