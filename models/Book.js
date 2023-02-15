@@ -32,7 +32,7 @@ const bookSchema = new mongoose.Schema({
         required: true,
         minLength: [3, "Too short title"]
     },
-    start: {
+    stars: {
         type: Number,
         enum: {
             values: [1,2,3,4,5],
