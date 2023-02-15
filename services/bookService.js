@@ -5,3 +5,5 @@ exports.create = (bookData, userId) => Book.create({...bookData, owner: userId})
 exports.getAll = () => Book.find({}).lean();
 
 exports.getOneById = (id) => Book.findById(id).lean();
+
+exports.updateWishListById = (id, bookwishList) => Book.findByIdAndUpdate(id, {wishList: bookwishList})

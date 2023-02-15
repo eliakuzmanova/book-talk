@@ -28,17 +28,16 @@ exports.getCatalogView = async (req, res) => {
 
 exports.getDetailsView = async (req, res) => {
     try {
-        console.log("Hallo");
+        
         const bookId = req.params.bookId
-        console.log(bookId);
+   
         const book = await bookService.getOneById(bookId);
-        console.log(book);
+
         const isAuth = req.user?.userId
-        console.log(Boolean(isAuth) + "   authenticate");
+       
         const isOwner = book.owner == req.user?.userId
-        console.log(isOwner + "   owner");
         const isBuyer = book.wishList.some(x => x._id == req.user?.userId)
-        console.log(isBuyer + "  buyer");
+        
 
         res.render("book/details", {book, isAuth, isOwner, isBuyer})
 
@@ -46,4 +45,23 @@ exports.getDetailsView = async (req, res) => {
         return errorUtils.errorResponse(res, "home/404", err, 404);
     }
 
+}
+
+exports.getWish = async (req, res) => {
+    
+    try {
+        const bookId = req.params.bookId
+        const userId = req.user.userId
+
+        const book = await bookService.getOneById(bookId);
+       
+        book.wishList.push(userId);
+      
+        await bookService.updateWishListById(bookId,book.wishList);
+        res.redirect(`/details/${bookId}`);
+
+    } catch (err) {
+        return errorUtils.errorResponse(res, "home/404", err, 404);
+    }
+    
 }

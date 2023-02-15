@@ -16,6 +16,7 @@ router.post("/create", bookController.postCreate)
 router.get("/catalog", bookController.getCatalogView)
 
 router.get("/details/:bookId", bookController.getDetailsView)
+router.get("/wish/:bookId", bookController.getWish)
 
 router.get("/register", authController.getRegisterView);
 router.post("/register", authController.postRegister);
